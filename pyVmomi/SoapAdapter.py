@@ -57,7 +57,7 @@ except ImportError:
 try:
    import Iso8601
 except ImportError:
-   import pyVmomi.Iso8601
+   import pyVmomi.Iso8601 as Iso8601
 
 import base64
 from xml.parsers.expat import ExpatError
@@ -339,9 +339,12 @@ class SoapSerializer:
             # TODO: Add a new "typens" attr?
             ns, name = GetQualifiedWsdlName(Type(val))
             attr += ' type="{0}"'.format(name)
-            self.writer.write('<{0}{1}>{2}</{3}>'.format(info.name, attr,
-                                                         val._moId.encode(
-                                                             self.encoding),
+
+            moId = val._moId
+            if sys.version < '3':
+               moId = val._moId.encode(self.encoding)
+
+            self.writer.write('<{0}{1}>{2}</{3}>'.format(info.name, attr, moId,
                                                          info.name))
         elif isinstance(val, list):
             if info.type is object:
@@ -420,9 +423,12 @@ class SoapSerializer:
                 # a bug.
                 val = str(val).decode('UTF-8')
             result = XmlEscape(val)
+            result_string = result
+            if sys.version < '3':
+                result_string = result.encode(self.encoding)
             self.writer.write('<{0}{1}>{2}</{0}>'.format(info.name,
                                                          attr,
-                                                         result.encode(self.encoding)))
+                                                         result_string))
 
     ## Serialize a a data object (internal)
     #
