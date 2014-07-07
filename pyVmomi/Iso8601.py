@@ -118,7 +118,7 @@ def ParseISO8601(datetimeStr):
    if match:
       try:
          dt = {}
-         for key, defaultVal in _dtExprKeyDefValMap.iteritems():
+         for key, defaultVal in _dtExprKeyDefValMap.items():
             val = match.group(key)
             if val:
                if key == 'microsecond':

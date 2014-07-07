@@ -213,7 +213,7 @@ class SoapSerializer:
         self.version = version
         self.nsMap = nsMap and nsMap or {}
         self.encoding = encoding and encoding or XML_ENCODING
-        for ns, prefix in self.nsMap.iteritems():
+        for ns, prefix in self.nsMap.items():
             if prefix == '':
                 self.defaultNS = ns
                 break
@@ -857,7 +857,7 @@ class SoapStubAdapterBase(StubAdapterBase):
 
         if reqContexts or samlToken:
             result.append(SOAP_HEADER_START)
-            for key, val in reqContexts.iteritems():
+            for key, val in reqContexts.items():
                 # Note: Support req context of string type only
                 if not isinstance(val, basestring):
                     raise TypeError("Request context key ({0}) has non-string value ({1}) of {2}".format(key, val, type(val)))
@@ -1529,6 +1529,3 @@ class SessionOrientedStub(StubAdapterBase):
             else:
                 # It's an exception from the method that was called, send it up.
                 raise obj
-
-        # Raise any socket/httplib errors caught above.
-        raise

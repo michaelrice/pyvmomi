@@ -14,7 +14,10 @@
 # limitations under the License.
 
 # ******* WARNING - AUTO GENERATED CODE - DO NOT EDIT *******
-from VmomiSupport import CreateDataType, CreateManagedType, CreateEnumType, AddVersion, AddVersionParent, F_LINK, F_LINKABLE, F_OPTIONAL
+try:
+    from VmomiSupport import CreateDataType, CreateManagedType, CreateEnumType, AddVersion, AddVersionParent, F_LINK, F_LINKABLE, F_OPTIONAL
+except ImportError:
+    from pyVmomi.VmomiSupport import CreateDataType, CreateManagedType, CreateEnumType, AddVersion, AddVersionParent, F_LINK, F_LINKABLE, F_OPTIONAL
 
 AddVersion("vim.version.version1", "vim2", "2.0", 1, "vim25")
 AddVersion("vim.version.version2", "vim25", "2.5", 0, "vim25")

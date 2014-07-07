@@ -39,7 +39,7 @@ except ImportError:
 try:
    import ServerObjects
 except ImportError:
-   pass
+   import pyVmomi.ServerObjects
 try:
    import InternalServerObjects
 except ImportError:
@@ -213,11 +213,6 @@ except ImportError:
 
 types = VmomiSupport.types
 
-# This will allow files to use Create** functions
-# directly from pyVmomi
-CreateEnumType = VmomiSupport.CreateEnumType
-CreateDataType = VmomiSupport.CreateDataType
-CreateManagedType = VmomiSupport.CreateManagedType
 
 # For all the top level names, creating a LazyModule object
 # in the global namespace of pyVmomi. Files can just import the
