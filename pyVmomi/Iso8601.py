@@ -20,6 +20,8 @@ This module is for ISO 8601 parsing
 """
 __author__ = 'VMware, Inc.'
 
+from __future__ import print_function
+
 import time
 from datetime import datetime, timedelta, tzinfo
 import re
